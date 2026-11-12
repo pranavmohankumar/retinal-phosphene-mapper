@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project #13 Implementation Document - Retinal Prosthesis Phosphene Stimulation Spatial Mapper</title>
+    <style>
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.6; color: #1e293b; background-color: #f8fafc; padding: 30px; }
+        .container { max-width: 900px; margin: 0 auto; background: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h1 { color: #0f172a; font-size: 24px; border-bottom: 2px solid #3b82f6; padding-bottom: 10px; margin-top: 0; }
+        h2 { color: #1e40af; font-size: 18px; margin-top: 25px; }
+        .badge { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 12px; margin-bottom: 15px; }
+        .box { background: #f1f5f9; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 0 6px 6px 0; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        pre { background: #0f172a; color: #f8fafc; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 13px; }
+        footer { margin-top: 40px; font-size: 12px; color: #64748b; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="badge">Project #13 Specification</span>
+        <h1>Retinal Prosthesis Phosphene Stimulation Spatial Mapper</h1>
+        <p><strong>Target Industry Profile:</strong> Second Sight, Pixium Vision, Bionic Eye Developers</p>
+        
+        <h2>1. System Architecture & Concept</h2>
+        <div class="box">
+            <p>Image-to-current injection mapping algorithm optimizing 64-channel epiretinal electrode array stimulation patterns.</p>
+        </div>
+
+        <h2>2. Synthetic Bio-Data Engineering Strategy</h2>
+        <p>High-contrast geometric shapes and optotype letters downsampled to electrode grid resolution.</p>
+
+        <h2>3. Low-End LLM Prompt & Module Blueprint</h2>
+        <ul>
+            <li><strong>Module 1: Visual Target Downsampler:</strong> Convert input camera frames into low-resolution electrode current injection maps.</li>
+            <li><strong>Module 2: Phosphene Overlap Simulator:</strong> Model Gaussian current spread and perceptual phosphene brightness overlap.</li>
+            <li><strong>Module 3: Current Injection Optimizer:</strong> Implement gradient descent optimization to maximize rendered image contrast.</li>
+        </ul>
+
+        <h2>4. Core Technical Starter Skeleton</h2>
+        <pre><code>import numpy as np
+
+def simulate_phosphene_rendering(current_map, grid_size=8, phosphene_sigma=1.5):
+    # Render simulated phosphene visual field from current array
+    output_field = np.zeros((64, 64))
+    for r in range(grid_size):
+        for c in range(grid_size):
+            val = current_map[r, c]
+            cy, cx = int((r+0.5)*8), int((c+0.5)*8)
+            y, x = np.ogrid[:64, :64]
+            gaussian = val * np.exp(-((x - cx)**2 + (y - cy)**2) / (2 * phosphene_sigma**2))
+            output_field += gaussian
+    return output_field
+</code></pre>
+
+        <footer>
+            <p>Neurotech Technical Blueprint | Prepared for Pranav Mohankumar | UIUC Neural Engineering</p>
+        </footer>
+    </div>
+</body>
+</html>
